@@ -268,8 +268,9 @@ class GPT2PPLV2:
 
         mean_prob = normCdf(abs(self.threshold - mean_score)) * 100
         label = 0 if mean_score > self.threshold else 1
-        print(f"probability for {'A.I.' if label == 0 else 'Human'}:", "{:.2f}%".format(mean_prob))
-        return {"prob": "{:.2f}%".format(mean_prob), "label": label}, self.getVerdict(mean_score)
+        
+        return mean_prob
+
 
     def getLogLikelihood(self,sentence):
         encodings = self.tokenizer(sentence, return_tensors="pt")
